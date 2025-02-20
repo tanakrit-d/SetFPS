@@ -59,7 +59,7 @@ setting_tabRef = G.UIDEF.settings_tab
 function G.UIDEF.settings_tab(tab)
     local setting_tab = setting_tabRef(tab)
 
-    if tab == "Game" then
+    if tab == "Video" then
         local c1 = {
             n = G.UIT.R,
             config = {
@@ -168,7 +168,7 @@ function G.UIDEF.settings_tab(tab)
             }}
         }
 
-        table.insert(setting_tab.nodes[1].nodes, #setting_tab.nodes[1].nodes + 1, c1)
+        table.insert(setting_tab.nodes[4].nodes, #setting_tab.nodes[4].nodes + 1, c1)
     end
     return setting_tab
 end

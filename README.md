@@ -8,7 +8,7 @@ If you're experiencing high battery drain or increased thermals while playing - 
 
 ## Options
 
-In order to select your desired FPS, navigate to `Options → Settings → Game`.
+In order to select your desired FPS, navigate to `Options → Settings → Video`.
 
 Available FPS caps: `30`, `60`, `120`, `144`, `240`, `Max (500)`.
 
