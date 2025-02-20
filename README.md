@@ -1,5 +1,7 @@
 # Set FPS for Balatro
 
+<img width="507" alt="ui" src="https://github.com/user-attachments/assets/767e586f-b7e8-4308-bd15-a395ce83e198" />
+
 This mod allows you to dynamically set the target FPS of Balatro, without having to manually edit the value of `FPS_CAP` in `main.lua`.  
 
 If you're experiencing high battery drain or increased thermals while playing - this is likely the solution as the default value is `500`.
