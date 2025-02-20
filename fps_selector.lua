@@ -4,7 +4,6 @@
 --- MOD_AUTHOR: [tanakrit-d]
 --- MOD_DESCRIPTION: Set target FPS without editing the Balatro files.
 --- DISPLAY_NAME: Set FPS
-
 local json = require("json")
 
 local directory = "Mods/SetFPS"
@@ -30,33 +29,21 @@ local function save()
     love.filesystem.write(file_path, content)
 end
 
-function G.FUNCS.set_fps_30()
-    G.FPS_CAP = 30
-    save()
-end
+G.FUNCS.set_fps = function(args)
+    local fps_values = {30, 60, 120, 144, 240, 500}
 
-function G.FUNCS.set_fps_60()
-    G.FPS_CAP = 60
-    save()
-end
+    local fps_value
+    if args.to_key == "Max" then
+        fps_value = 500
+    else
+        fps_value = tonumber(args.to_key)
 
-function G.FUNCS.set_fps_120()
-    G.FPS_CAP = 120
-    save()
-end
+        if fps_value and fps_value >= 1 and fps_value <= #fps_values then
+            fps_value = fps_values[fps_value]
+        end
+    end
 
-function G.FUNCS.set_fps_144()
-    G.FPS_CAP = 144
-    save()
-end
-
-function G.FUNCS.set_fps_240()
-    G.FPS_CAP = 240
-    save()
-end
-
-function G.FUNCS.set_fps_500()
-    G.FPS_CAP = 500
+    G.FPS_CAP = fps_value or 500
     save()
 end
 
@@ -71,109 +58,24 @@ function G.UIDEF.settings_tab(tab)
                 align = "cm",
                 r = 0
             },
-            nodes = {{
-                n = G.UIT.R,
-                config = {
-                    align = "cm",
-                    r = 0
-                },
-                nodes = {{
-                    n = G.UIT.T,
-                    config = {
-                        text = "Set Target FPS  ",
-                        scale = 0.35,
-                        colour = G.C.WHITE,
-                        shadow = true
-                    }
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_30",
-                        colour = G.C.RED,
-                        label = {"30"},
-                        scale = 0.35
-                    })}
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_60",
-                        colour = G.C.BLUE,
-                        label = {"60"},
-                        scale = 0.35
-                    })}
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_120",
-                        colour = G.C.GREEN,
-                        label = {"120"},
-                        scale = 0.35
-                    })}
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_144",
-                        colour = G.C.PURPLE,
-                        label = {"144"},
-                        scale = 0.35
-                    })}
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_240",
-                        colour = G.C.ORANGE,
-                        label = {"240"},
-                        scale = 0.35
-                    })}
-                }, {
-                    n = G.UIT.C,
-                    config = {
-                        padding = 0.15,
-                        align = "cm"
-                    },
-                    nodes = {UIBox_button({
-                        minw = 0.7,
-                        minh = 0.5,
-                        button = "set_fps_500",
-                        colour = G.C.BLACK,
-                        label = {"Max"},
-                        scale = 0.35
-                    })}
-                }}
-            }}
+            nodes = {create_option_cycle({
+                label = "Set FPS",
+                scale = 0.8,
+                options = {30, 60, 120, 144, 240, "Max"},
+                opt_callback = 'set_fps',
+                current_option = (function()
+                    local options = {30, 60, 120, 144, 240, 500}
+                    for i, val in ipairs(options) do
+                        if G.FPS_CAP == val then
+                            return i
+                        end
+                    end
+                    return 6 -- Default to Max
+                end)()
+            })}
         }
 
-        table.insert(setting_tab.nodes[4].nodes, #setting_tab.nodes[4].nodes + 1, c1)
+        table.insert(setting_tab.nodes[3].nodes, #setting_tab.nodes[3].nodes + 1, c1)
     end
     return setting_tab
 end
