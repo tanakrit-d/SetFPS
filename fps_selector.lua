@@ -50,6 +50,11 @@ function G.FUNCS.set_fps_144()
     save()
 end
 
+function G.FUNCS.set_fps_240()
+    G.FPS_CAP = 240
+    save()
+end
+
 function G.FUNCS.set_fps_500()
     G.FPS_CAP = 500
     save()
