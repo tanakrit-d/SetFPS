@@ -1,14 +1,14 @@
 # Set FPS for Balatro
 
-<img width="450" alt="interface" src="https://github.com/user-attachments/assets/42bae040-2720-47fe-94ee-8acbe91c7d94" />
+<img width="450" alt="interface_resize" src="https://github.com/user-attachments/assets/39041483-7476-4e3b-b6ae-6b656b9e4988" />
 
-This mod allows you to dynamically set the target FPS of Balatro, without having to manually edit the value of `FPS_CAP` in `main.lua`.  
+This mod allows you to dynamically set the FPS cap of Balatro, without having to manually edit the value of `FPS_CAP` in `main.lua`.  
 
 If you're experiencing high battery drain or increased thermals while playing - this is likely the solution as the default value is `500`.
 
 ## Options
 
-In order to select your desired FPS, navigate to `Options → Settings → Video`.
+In order to select your desired FPS cap, navigate to `Options → Settings → Video`.
 
 Available FPS caps: `30`, `60`, `120`, `144`, `240`, `Max (500)`.
 
