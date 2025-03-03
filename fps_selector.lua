@@ -8,6 +8,11 @@ local json = require("json")
 
 local directory = "Mods/SetFPS"
 local file_name = "config.json"
+
+if not love.filesystem.getInfo(directory) then
+    love.filesystem.createDirectory(directory)
+end
+
 local file_path = directory .. "/" .. file_name
 
 function SMODS.INIT.FrameRateSelector()
