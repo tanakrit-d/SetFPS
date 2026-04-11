@@ -12,8 +12,6 @@ In order to select your desired FPS cap, navigate to `Options → Settings`.
 
 Available FPS caps: `30`, `60`, `120`, `144`, `240`, `Max (500)`.
 
-There's no need to press apply - the settings are saved immediately.
-
 ## Setup
 
 [Steamodded](https://github.com/Steamodded/smods) is required.  
