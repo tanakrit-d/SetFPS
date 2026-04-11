@@ -36,3 +36,7 @@ Place the latest release within the Mods directory:
 ### Example
 
 `/Users/tanakrit/Library/Application Support/Balatro/Mods/SetFPS`
+
+## Nexus Mods
+
+[Balatro: Set FPS](https://www.nexusmods.com/balatro/mods/264)
