@@ -2,15 +2,18 @@
 	"id": "SetFPS",
 	"name": "SetFPS",
 	"display_name": "SetFPS",
-	"author": ["tanakrit-d"],
+	"author": [
+		"tanakrit-d"
+	],
 	"description": "Set an FPS cap for Balatro",
 	"prefix": "fps",
 	"main_file": "fps_selector.lua",
 	"priority": 0,
 	"badge_colour": "FFB900",
 	"badge_text_colour": "7B3306",
-	"version": "0.1.4",
+	"version": "0.2.0",
 	"dependencies": [
-        "Steamodded (>=1.*~)",
-		"Lovely (>=0.9)"]
+		"Steamodded (>=1.*~)",
+		"Lovely (>=0.9)"
+	]
 }
