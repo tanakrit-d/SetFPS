@@ -1,75 +1,51 @@
--- ============================================================
--- Constants
--- ============================================================
 local FPS_OPTIONS = {30, 60, 120, 144, 240, 500}
 local FPS_LABELS = {"30", "60", "120", "144", "240", "Max"}
 local DEFAULT_FPS = 500
 
--- ============================================================
--- Mod initialisation
--- ============================================================
+local mod = SMODS.current_mod
+local config = mod.config
 
-local config = SMODS.current_mod.config
-G.FPS_CAP = config.fps_cap or DEFAULT_FPS
-
--- ============================================================
--- FPS cap callback
--- ============================================================
-
-G.FUNCS.set_fps = function(args)
-    local key = args and args.to_val
-
-    local fps
-    if key == "Max" then
-        fps = DEFAULT_FPS
-    else
-        local n = tonumber(key)
-        for _, v in ipairs(FPS_OPTIONS) do
-            if v == n then
-                fps = v
-                break
-            end
+local function get_fps_index(fps)
+    for i, value in ipairs(FPS_OPTIONS) do
+        if value == fps then
+            return i
         end
     end
 
-    G.FPS_CAP = fps or DEFAULT_FPS
-    config.fps_cap = G.FPS_CAP
+    return #FPS_OPTIONS
 end
 
--- ============================================================
--- Settings UI injection
--- ============================================================
+local current_index = get_fps_index(config.fps_cap)
+config.fps_cap = FPS_OPTIONS[current_index]
+G.FPS_CAP = config.fps_cap
 
-local _settings_tab_orig = G.UIDEF.settings_tab
+G.FUNCS.fps_set_cap = function(args)
+    local index = args and args.cycle_config and args.cycle_config.current_option
+    local fps = FPS_OPTIONS[index] or DEFAULT_FPS
 
-function G.UIDEF.settings_tab(tab)
-    local result = _settings_tab_orig(tab)
-
-    if tab == "Game" then
-        local current = #FPS_LABELS
-        for i, v in ipairs(FPS_OPTIONS) do
-            if (G.FPS_CAP or DEFAULT_FPS) == v then
-                current = i
-                break
-            end
-        end
-
-        local nodes = result.nodes
-        nodes[#nodes + 1] = create_option_cycle({
-            label = "FPS Cap",
-            scale = 0.8,
-            options = FPS_LABELS,
-            opt_callback = "set_fps",
-            current_option = current
-        })
-    end
-
-    return result
+    config.fps_cap = fps
+    G.FPS_CAP = fps
 end
 
--- ============================================================
--- FPS-capped run loop
--- ============================================================
+mod.config_tab = function()
+    return {
+        n = G.UIT.ROOT,
+        config = {
+            align = "cm",
+            padding = 0.05,
+            colour = G.C.CLEAR
+        },
+        nodes = {
+            create_option_cycle({
+                label = "FPS Cap",
+                scale = 0.8,
+                options = FPS_LABELS,
+                opt_callback = "fps_set_cap",
+                current_option = get_fps_index(config.fps_cap)
+            })
+        }
+    }
+end
 
 local _run_orig = love.run
 

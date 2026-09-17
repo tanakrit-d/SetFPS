@@ -1,6 +1,6 @@
 # Set FPS for Balatro
 
-<img width="450" alt="interface_resize" src="./assets/interface.png"/>
+<img width="450" alt="interface" src="./assets/interface.png"/>
 
 This mod allows you to dynamically set the FPS cap of Balatro, without having to manually edit the value of `FPS_CAP` in `main.lua`.  
 
@@ -8,14 +8,14 @@ If you're experiencing high battery drain or increased thermals while playing - 
 
 ## Options
 
-In order to select your desired FPS cap, navigate to `Options → Settings`.
+To select your desired FPS cap, open `Mods`, select `SetFPS`, then open the `Config` tab.
 
 Available FPS caps: `30`, `60`, `120`, `144`, `240`, `Max (500)`.
 
 ## Setup
 
 [Steamodded](https://github.com/Steamodded/smods) is required.  
-Installation instructions are available [here](https://github.com/Steamodded/smods/wiki).
+Installation instructions are available in the [official documentation](https://docs.smods.dev/).
 
 Place the latest release within the Mods directory:
 
