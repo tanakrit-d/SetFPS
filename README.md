@@ -1,6 +1,6 @@
 # Set FPS for Balatro
 
-<img width="450" alt="interface_resize" src="./assets/interface.png"/>
+<img width="450" alt="interface" src="./assets/interface.png"/>
 
 This mod allows you to dynamically set the FPS cap of Balatro, without having to manually edit the value of `FPS_CAP` in `main.lua`.  
 
